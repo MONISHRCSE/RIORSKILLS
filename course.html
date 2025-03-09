@@ -1,9 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Skill Development App</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -11,154 +12,185 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white;
-            color: black;
-            text-align: center;
+            background-color: #f0f2f5;
+            color: #333;
         }
-        header {
-            background: linear-gradient(90deg, red, black);
-            color: white;
-            padding: 20px 0;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            transition: transform 0.3s ease-in-out;
-        }
-        header h1:hover {
-            transform: scale(1.1);
-            color: red;
-        }
-        nav ul {
-            list-style: none;
+        .navbar {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            align-items: center;
+            background-color: #000;
+            padding: 20px 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-size: 1.2rem;
-            transition: color 0.3s ease-in-out, transform 0.3s;
+        .nav-low-bar{
+            background: linear-gradient(90deg, red, black);
+            width: 100%;
+            height: 12px;
+            margin-top: 72px;
         }
-        nav ul li a:hover {
-            color: red;
-            transform: scale(1.1);
+        .logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+        .logo:hover {
+    transform: scale(1.1);
+    color: red;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    transition: color 0.3s ease-in-out, transform 0.3s;
+}
+
+.nav-links a:hover {
+    color: red;
+    transform: scale(1.1);
+}
+        .hero-section {
+            background: url('hero-bg.jpg') center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, red, black);
+        }
+        .hero-section .container {
+           
+            position: relative;
+            z-index: 1;
         }
         .btn {
             background: red;
-            color: white;
+            color: #fff;
             padding: 10px 20px;
-            font-size: 1rem;
-            border: none;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-        }
-        .btn:hover {
-            background: black;
-            color: red;
+            text-decoration: none;
         }
         .course-list {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
             gap: 20px;
-            padding: 20px;
+            flex-wrap: wrap;
+            padding: 40px;
         }
         .course {
-            background: black;
-            color: white;
+            background: #000;
+            color: #fff;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 10px;
             width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
         .course:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px) scale(1.05);
+            transition: 0.3s;
         }
-        .input-focus:focus {
-            border: 2px solid red;
-            outline: none;
+        #contact form input, #contact form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
         }
-        .fade-in {
-            animation: fadeIn 1.5s ease-in-out;
+        
+        #contact form button {
+            background: red;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="fade-in">RIORSKILLS</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="courses.html" class="nav-link">Courses</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <nav class="navbar">
+        <div class="logo">RIORSKILLS</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="course.html">Courses</a></li>
+            <li><a href="#">Challenges</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="nav-low-bar"></div>
 
-    <section id="home" class="home-section fade-in">
+    <section class="hero-section">
         <div class="container">
             <h2>Welcome to Skill Development Hub</h2>
-            <p>Enhance your skills with our comprehensive courses. Learn Data Structures & Algorithms, Web Design, and more!</p>
+            <p>Enhance your skills with our comprehensive courses.</p>
             <a href="#courses" class="btn">Explore Courses</a>
         </div>
     </section>
 
-    <section id="courses" class="courses-section fade-in">
-        <div class="container">
-            <h2>Our Courses</h2>
-            <div class="course-list">
-                <div class="course">
-                    <h3>Data Structures & Algorithms</h3>
-                    <p>Learn the fundamentals of DSA and master problem-solving techniques.</p>
-                    <a href="#" class="btn">Start Course</a>
-                </div>
-                <div class="course">
-                    <h3>Web Design</h3>
-                    <p>Master web design principles and build stunning websites with HTML, CSS, and JavaScript.</p>
-                    <a href="#" class="btn">Start Course</a>
-                </div>
-                <div class="course">
-                    <h3>Python Programming</h3>
-                    <p>Learn Python from scratch and explore various applications of this versatile language.</p>
-                    <a href="#" class="btn">Start Course</a>
-                </div>
+    <section id="courses">
+        <div class="course-list">
+            <div class="course">
+                <h3>Data Structures & Algorithms</h3>
+                <p>Master problem-solving techniques.</p>
+                <a href="#" class="btn">Start Course</a>
+            </div>
+            <div class="course">
+                <h3>Web Design</h3>
+                <p>Build stunning websites with HTML, CSS, and JS.</p>
+                <a href="#" class="btn">Start Course</a>
+            </div>
+            <div class="course">
+                <h3>Python Programming</h3>
+                <p>Explore Python for versatile applications.</p>
+                <a href="#" class="btn">Start Course</a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about-section fade-in">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>We are dedicated to helping you grow your skills and knowledge. Our courses are designed by industry professionals and tailored for all learning levels.</p>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section fade-in">
-        <div class="container">
+    <section id="contact">
+        <div id="summa" class="container">
             <h2>Contact Us</h2>
             <form action="#" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required class="input-focus">
-                <input type="email" name="email" placeholder="Your Email" required class="input-focus">
-                <textarea name="message" placeholder="Your Message" required class="input-focus"></textarea>
-                <button type="submit" class="btn">Send Message</button>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Skill Development Hub. All rights reserved.</p>
-        </div>
+        <p>&copy; 2025 Skill Development Hub. All rights reserved.</p>
     </footer>
 </body>
 </html>
