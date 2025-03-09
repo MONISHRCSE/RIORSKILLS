@@ -1,13 +1,29 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Development App</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* For all modern browsers */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            /* For Internet Explorer & Edge */
+            scrollbar-width: none;
+            /* For Firefox */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,64 +31,87 @@
             background-color: #f0f2f5;
             color: #333;
         }
+
+        /* Navigation Bar Enhancements */
         .navbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            background-color: #000;
+            background-color: black;
             padding: 20px 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            color: white;
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
+            transition: background 0.3s ease-in-out;
         }
-        .nav-low-bar{
+
+        .nav-low-bar {
             background: linear-gradient(90deg, red, black);
             width: 100%;
+            position: fixed;
             height: 12px;
-            margin-top: 72px;
+            top: 76.5px;
+            left: 0;
+            z-index: 1001;
         }
+
         .logo {
-    font-size: 32px;
-    font-weight: bold;
-    color: white;
-    transition: transform 0.3s ease-in-out;
-}
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
         .logo:hover {
-    transform: scale(1.1);
-    color: red;
-}
+            transform: scale(1.1);
+            color: red;
+        }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
 
-.nav-links li {
-    display: inline;
-}
+        .nav-links li {
+            display: inline;
+        }
 
-.nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 22px;
-    transition: color 0.3s ease-in-out, transform 0.3s;
-}
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 22px;
+            transition: color 0.3s ease-in-out, transform 0.3s;
+        }
 
-.nav-links a:hover {
-    color: red;
-    transform: scale(1.1);
-}
+        .nav-links a:hover {
+            color: red;
+            transform: scale(1.1);
+        }
+
+        .profile img {
+            width: 28px;
+            height: 28px;
+            border: 2px solid white;
+            border-radius: 15px;
+            position: relative;
+            top: 0px;
+            right: 80px;
+        }
+
+        /* hero section */
         .hero-section {
             background: url('hero-bg.jpg') center/cover;
             color: #fff;
             text-align: center;
-            padding: 100px 20px;
+            padding: 50px 20px;
             position: relative;
+            margin-top: 80px;
         }
+
         .hero-section::before {
             content: "";
             position: absolute;
@@ -81,12 +120,26 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, red, black);
+            opacity: 0.7;
         }
+
         .hero-section .container {
-           
+
             position: relative;
             z-index: 1;
         }
+
+        .hero-section h2 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+
         .btn {
             background: red;
             color: #fff;
@@ -94,6 +147,7 @@
             border-radius: 5px;
             text-decoration: none;
         }
+
         .course-list {
             display: flex;
             justify-content: center;
@@ -101,26 +155,120 @@
             flex-wrap: wrap;
             padding: 40px;
         }
+
         .course {
             background: #000;
             color: #fff;
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
             width: 300px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
+
+        .course h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .course p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .course a {
+            background: red;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .course a:hover {
+            background: black;
+            color: red;
+        }
+
+        .course img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #contact {
+            background: black;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        #contact h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: red;
+        }
+        
+        #contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #contact form input,
+        #contact form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+        }
+
+        #contact form input::placeholder,
+        #contact form textarea::placeholder {
+            color: #bbb;
+        }
+
+        #contact form button {
+            background: red;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s ease-in-out;
+        }
+
+        #contact form button:hover {
+            background: darkred;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Responsive Design */
         .course:hover {
             transform: translateY(-5px) scale(1.05);
             transition: 0.3s;
         }
-        #contact form input, #contact form textarea {
+
+        #contact form input,
+        #contact form textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border: 2px solid #ddd;
             border-radius: 5px;
         }
-        
+
         #contact form button {
             background: red;
             color: #fff;
@@ -128,6 +276,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         footer {
             background-color: #000;
             color: #fff;
@@ -136,16 +285,22 @@
         }
     </style>
 </head>
+
 <body>
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">RIORSKILLS</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="course.html">Courses</a></li>
-            <li><a href="#">Challenges</a></li>
             <li><a href="#">Community</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#">Competitive programming</a></li>
         </ul>
+        <div class="profile">
+            <a href=""><img
+                    src="https://e7.pngegg.com/pngimages/442/477/png-clipart-computer-icons-user-profile-avatar-profile-heroes-profile-thumbnail.png"
+                    alt="" id="profile"></a>
+        </div>
     </nav>
     <div class="nav-low-bar"></div>
 
@@ -193,4 +348,5 @@
         <p>&copy; 2025 Skill Development Hub. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
