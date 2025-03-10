@@ -1,554 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inbox • Chats</title>
-    <link rel="shortcut icon" href="instaicon.jpg" type="image/x-icon">
+    <title>Chat Application</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: black;
-            color: white;
-        }
-
-
-
-        /* nav */
-
-        .nav {
-            position: fixed;
-        }
-
-        .subnav a {
-            text-decoration: none;
-            color: white;
-            border-radius: 5px;
-
-        }
-
-        .vertical-line {
-            border-left: 0.5px solid rgb(50, 50, 50);
-            height: 584px;
-            margin-left: 72px;
-            position: absolute;
-            top: 0;
-        }
-
-        .icon img {
-            margin-top: 26.5px;
-            margin-left: 8.5px;
-            margin-bottom: 8.5px;
-        }
-
-        .subnav ul {
-            display: grid;
-            grid-template-columns: 245px;
-            grid-template-rows: 53.5px 53.5px 53.5px 53.5px 53.5px 53.5px 53.5px 53.5px 53.5px;
-        }
-
-
-
-        .dm-container {
             display: flex;
-            width: 1215px;
             height: 100vh;
-            border: 1px solid #333;
-            position: fixed;
-            z-index: 10;
-            margin-left: 72px;
-            cursor: default;
-        }
-
-        .dm-sidebar {
-            width: 32.5%;
-            border-right: 1px solid #333;
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .dm-sidebar-header {
-            margin-top: 5px;
-            padding: 15px;
-            background-color: black;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .dm-sidebar-header p{
-            margin-left: 10px;
-            font-size: large;
-            font-weight: bold;
-        }
-        
-
-        .search-bar {
-            padding: 10px;
-            margin: 10px;
-            border: 1px solid #333;
-            border-radius: 20px;
-            background-color: #2a2a2a;
-            color: #e0e0e0;
-        }
-
-        .search-bar::placeholder {
-            color: #888;
-        }
-
-
-
-
-
-        .chat-list {
-            list-style: none;
             margin: 0;
-            padding: 0;
-            flex: 1;
-            overflow-y: auto;
-            scrollbar-width: none;
+            font-family: Arial, sans-serif;
         }
-
-        .chat-list-item {
-            padding: 15px;
-            border-bottom: 1px solid #333;
+        .sidebar {
+            width: 250px;
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .contact, .nav-item {
             cursor: pointer;
+            padding: 10px;
+            color: #ECF0F1;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .contact:hover, .nav-item:hover {
+            background-color: #34495E;
+        }
+        .navigation {
+            margin-top: 30px;
             display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #e0e0e0;
-        }
-
-        .chat-list-item:hover {
-            background-color: #333;
-        }
-
-        .chat-list-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .online-status {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #4caf50;
-        }
-
-
-
-
-
-        /* Chat window styles */
-        .dm-chat-window {
-            flex: 1;
-            display: none;
             flex-direction: column;
-            background-color: black;
         }
-
-        .dm-chat-header {
-            padding: 15px;
-            background-color: black;
+        .chat-container {
+            flex-grow: 1;
             display: flex;
-            align-items: center;
-            color: white;
-            gap: 10px;
-            border-bottom: 1px solid #333;
+            flex-direction: column;
+            background-color: #ECF0F1;
+            padding: 20px;
+            width: 100%;
+            display: flex;
+            box-sizing: border-box;
         }
-
-        .dm-chat-header img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        .dm-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
+        .message-container {
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            overflow-y: scroll;
+            max-height: 70%;
         }
-
         .message {
-            max-width: 60%;
-            padding: 10px;
+            background-color: #BDC3C7;
+            padding: 15px;
             border-radius: 10px;
-            font-size: 14px;
-            line-height: 1.4;
+            max-width: 60%;
+            margin-bottom: 15px;
         }
-
-        .message.sent {
-            background-color: #007bff;
+        .message.you {
+            background-color: #4CAF50;
             color: white;
-            align-self: flex-end;
+            margin-left: auto;
         }
-
-        .message.received {
-            background-color: #333;
-            color: #e0e0e0;
-            align-self: flex-start;
+        .message.professional {
+            background-color: #34495E;
+            color: white;
         }
-
-        .dm-input {
+        .input-area {
             display: flex;
-            padding: 10px;
-            border-top: 1px solid #333;
-            background-color: black;
+            flex-direction: column;
+            gap: 5px; /* Reduced gap */
+            background-color: #2C3E50;
+            padding: 5px; /* Reduced padding */
+            border-radius: 10px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px; /* Changed from left to right */
+            width: 84.5%;
+            box-sizing: border-box;
         }
-
-        .dm-input input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #333;
-            border-radius: 20px;
-            font-size: 14px;
-            background-color: #1e1e1e;
-            color: white;
-        }
-
-        .dm-input input::placeholder {
-            color: #888;
-        }
-
-
-        /* ***********
-            *********
-               *** */
-        /* .dm-input input:focus{
-            outline: none;
-        } */
-
-        .dm-input button {
-            margin-left: 10px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
+        .input-area input {
+            padding: 8px; /* Reduced padding */
             border: none;
             border-radius: 20px;
+            margin-bottom: 5px; /* Reduced margin */
+            font-size: 14px; /* Smaller font size */
+        }
+        .input-area button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px; /* Reduced padding */
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 14px; /* Smaller font size */
         }
-
-        .dm-input button:hover {
-            background-color: #0056b3;
-        }
-
-
-
-
-        .heart {
-            position: absolute;
-            width: 50px;
-            /* Larger heart */
-            height: 50px;
-            /* Larger heart */
-            background-color: transparent;
-            transform: rotate(45deg);
-            animation: heart-animation 4s ease-out forwards;
-            pointer-events: none;
-        }
-
-        .heart::before,
-        .heart::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: transparent;
-            border-radius: 50%;
-        }
-
-        .heart::before {
-            left: 0;
-            top: -15px;
-            background-color: #ff7f7f;
-            /* Peach Pink */
-        }
-
-        .heart::after {
-            top: 0;
-            left: 15px;
-            background-color: #ff4d4d;
-            /* Red */
-        }
-
-        @keyframes heart-animation {
-            0% {
-                opacity: 1;
-                transform: scale(1) translate(0, 0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: scale(0) translate(calc(var(--x) * 100vw), calc(var(--y) * -100vh));
-            }
+        .input-area button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
-
 <body>
+    <div class="sidebar">
+        <h2>RIORSKILLS</h2>
+        <div class="contact" onclick="startChat('Sanjay Ramasamy')">Sanjay Ramasamy</div>
+        <div class="contact" onclick="startChat('Nanthiswaran SP')">Nanthiswaran SP</div>
+        <div class="contact" onclick="startChat('Rajan Sam')">Rajan Sam</div>
 
-    <!-- nav -->
-
-    <div class="nav">
-        <div class="icon">
-            <a href="" id="instaicon"><img src="iicon.jpg" alt="" width="45px" height="44px"
-                    style="position: relative; top:0px ; left: 2px;"></a>
-        </div>
-        <div class="subnav">
-            <ul type="none">
-                <li><a href="" id="homeicon">
-                        <img src="homeicon2.jpg" alt="" width="40px" height="39px"
-                            style="position: relative; top:0px ; left: -28px;">
-
-                <li><a href="">
-                        <img src="searchicon.jpg" alt="" width="38px" height="36px"
-                            style="position: relative; top:0px ; left: -26px;">
-
-                <li><a href="" id="exploreicon">
-                        <img src="exploreicon.jpg" alt="" width="40px" height="33px"
-                            style="position: relative; top:0px ; left: -28px;">
-
-                <li><a href="">
-                        <img src="reelicon.jpg" alt="" width="40px" height="39px"
-                            style="position: relative; top:0px ; left: -28px;">
-
-                <li><a href="" id="messageicon">
-                        <img src="messageicon2.jpg" alt="" width="40px" height="39px"
-                            style="position: relative; top:0px ; left: -28px;">
-
-                <li><a href="">
-                        <img src="notiicon.jpg" alt="" width="40px" height="36px"
-                            style="position: relative; top:0px ; left: -28px;">
-
-                <li><a href="">
-                        <img src="createicon.jpg" alt="" width="40px" height="39px"
-                            style="position: relative; top:0px ; left: -28px;">
-
-                <li><a href="" id="profileicon">
-                        <img src="profileicon.jpg" alt="" width="28px" height="28px"
-                            style="position: relative; top:0px ; left: -22px;">
-
-                <li><a href="">
-                        <img src="moreicon.jpg" alt="" width="28px" height="26px"
-                            style="position: relative; top:-3px ; left: -22px;">
-
-            </ul>
-        </div>
-        <div class="vertical-line"></div>
-    </div>
-
-
-    <div class="dm-container">
-        <!-- Sidebar -->
-        <div class="dm-sidebar">
-            <div class="dm-sidebar-header"><p>Layla meadows🫧</p></div>
-            <input type="text" class="search-bar" id="searchBar" placeholder="Search chats..." oninput="filterChats()">
-            <ul class="chat-list" id="chatList">
-                <li class="chat-list-item"
-                    onclick="openChat('Alex', 'https://i.pinimg.com/736x/ab/63/bb/ab63bb7fcc4a3fe74601658a4e44f217.jpg')">
-                    <img src="https://i.pinimg.com/736x/ab/63/bb/ab63bb7fcc4a3fe74601658a4e44f217.jpg" alt="User">
-                    <span>Alex</span>
-                    <span class="online-status"></span>
-                </li>
-                <li class="chat-list-item"
-                    onclick="openChat('Josh', 'https://cdn.talkie-ai.com/talkie-user-img/114035936370808/192595256856952-2.jpeg')">
-                    <img src="https://cdn.talkie-ai.com/talkie-user-img/114035936370808/192595256856952-2.jpeg"
-                        alt="User">
-                    <span>Josh</span>
-                </li>
-                <li class="chat-list-item"
-                    onclick="openChat('Ava', 'https://imagedelivery.net/LBWXYQ-XnKSYxbZ-NuYGqQ/72e4c698-3fd2-4bd6-69fe-c169cee00f00/avatarhd')">
-                    <img src="https://imagedelivery.net/LBWXYQ-XnKSYxbZ-NuYGqQ/72e4c698-3fd2-4bd6-69fe-c169cee00f00/avatarhd"
-                        alt="User">
-                    <span>Ava</span>
-                    <span class="online-status"></span>
-                </li>
-                <li class="chat-list-item"
-                    onclick="openChat('Jules', 'https://i.pinimg.com/736x/16/a9/b9/16a9b9f6146fd0358ff0eb1397890c70.jpg')">
-                    <img src="https://i.pinimg.com/736x/16/a9/b9/16a9b9f6146fd0358ff0eb1397890c70.jpg" alt="User">
-                    <span>Jules</span>
-                    <span class="online-status"></span>
-                </li>
-                <li class="chat-list-item"
-                    onclick="openChat('bridget', 'https://pbs.twimg.com/media/GR50UJ7XEAAF2Mw.jpg')">
-                    <img src="https://pbs.twimg.com/media/GR50UJ7XEAAF2Mw.jpg" alt="User">
-                    <span>bridget</span>
-                    <span class="online-status"></span>
-                </li>
-                <li class="chat-list-item"
-                    onclick="openChat('Peter kevinsky', 'https://i.pinimg.com/736x/b8/6a/4f/b86a4f7a84c382c3cf5dd33fe1e36571.jpg')">
-                    <img src="https://i.pinimg.com/736x/b8/6a/4f/b86a4f7a84c382c3cf5dd33fe1e36571.jpg" alt="User">
-                    <span>Peter Kevinsky</span>
-                    <span class="online-status"></span>
-                </li>
-                <li class="chat-list-item"
-                    onclick="openChat('Rhys', 'https://cdn.talkie-ai.com/talkie-user-img/114035936370808/192601858986358-1-5-400x0.webp')">
-                    <img src="https://cdn.talkie-ai.com/talkie-user-img/114035936370808/192601858986358-1-5-400x0.webp"
-                        alt="User">
-                    <span>Rhys</span>
-                    <span class="online-status"></span>
-                </li>
-                <li class="chat-list-item"
-                    onclick="openChat('stella', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvAxkpsrm0sY59TsZ4EwnzYEXOXMEa1VUHkg&s')">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvAxkpsrm0sY59TsZ4EwnzYEXOXMEa1VUHkg&s"
-                        alt="User">
-                    <span>stella</span>
-                    <span class="online-status"></span>
-                </li>
-            </ul>
-        </div>
-
-
-
-
-
-
-
-        <!-- Chat Window -->
-        <div class="dm-chat-window" id="chatWindow">
-            <div class="dm-chat-header" id="chatHeader">
-                <img id="chatAvatar" src="https://via.placeholder.com/40" alt="User">
-                <span id="chatName">Select a chat</span>
-            </div>
-            <div class="dm-messages" id="chatMessages"></div>
-            <div class="dm-input">
-                <input type="text" id="messageInput" placeholder="Type a message...">
-                <button onclick="sendMessage()">Send</button>
-            </div>
+        <div class="navigation">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Profile</a>
+            <a href="#" class="nav-item">Settings</a>
         </div>
     </div>
 
+    <div class="chat-container">
+        <h2 id="chatTitle">Select a user to chat</h2>
+        <div class="message-container" id="messageContainer">
+            <!-- Messages will be displayed here -->
+        </div>
+    </div>
 
-
-
+    <div class="input-area">
+        <input type="text" id="messageInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
 
     <script>
+        let currentUser = ''; // Store the currently selected user
+        let typingIndicatorTimeout;
 
-        addEventListener("click", function (event) {
-            event.preventDefault()
-        })
-
-        // linking
-        var home = document.getElementById("homeicon")
-        home.addEventListener("click", event => {
-            event.stopImmediatePropagation()
-            home.href = "ighome.html"
-        })
-        var explore = document.getElementById("exploreicon")
-        explore.addEventListener("click", event => {
-            event.stopImmediatePropagation()
-            explore.href = "igexplore.html"
-        })
-        var message = document.getElementById("messageicon")
-        message.addEventListener("click", event => {
-            event.stopImmediatePropagation()
-            message.href = "igmessage.html"
-        })
-        var profile = document.getElementById("profileicon")
-        profile.addEventListener("click", event => {
-            event.stopImmediatePropagation()
-            profile.href = "igprofile.html"
-        })
-
-
-
-
-        let currentChat = '';
-
-        function openChat(userName, avatarUrl) {
-            currentChat = userName;
-
-            // Update chat header
-            document.getElementById('chatName').textContent = userName;
-            document.getElementById('chatAvatar').src = avatarUrl;
-
-            // Clear chat messages
-            document.getElementById('chatMessages').innerHTML = '';
-
-            // Show chat window
-            document.getElementById('chatWindow').style.display = 'flex';
+        // Function to start a chat with a specific user
+        function startChat(user) {
+            currentUser = user;
+            document.getElementById('chatTitle').textContent = `Chat with ${user}`;
+            document.getElementById('messageContainer').innerHTML = ''; // Clear previous messages
+            loadMessages(user); // Load initial mock messages
         }
 
+        // Function to load initial messages (mock data for now)
+        function loadMessages(user) {
+            const messageContainer = document.getElementById('messageContainer');
+            
+            // Mock initial messages
+            const mockMessages = [
+                { from: 'professional', text: `Hi ${user}, how can I help you today?` },
+                { from: 'you', text: 'Hello, I need assistance with a project.' },
+                { from: 'professional', text: 'Sure! Tell me more about the project.' },
+            ];
 
-
-        function sendMessage() {
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value.trim();
-
-            if (message !== '' && currentChat !== '') {
-                const messagesContainer = document.getElementById('chatMessages');
-                const sentMessage = document.createElement('div');
-                sentMessage.className = 'message sent';
-                sentMessage.textContent = message;
-                messagesContainer.appendChild(sentMessage);
-
-                createHearts(messagesContainer);
-                messageInput.value = '';
-                setTimeout(() => {
-                    const receivedMessage = document.createElement('div');
-                    receivedMessage.className = 'message received';
-                    receivedMessage.textContent = "Hii!";
-
-                    messagesContainer.appendChild(receivedMessage);
-
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                }, 1000);
-
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-        }
-
-
-
-        function createHearts(container) {
-            for (let i = 0; i < 10; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-
-                const x = Math.random() * 2 - 1;
-                const y = Math.random() * 2;
-
-                heart.style.setProperty('--x', x);
-                heart.style.setProperty('--y', y);
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.top = `${Math.random() * 100}%`;
-
-                container.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 1500);
-            }
-        }
-
-
-
-        function filterChats() {
-            const searchValue = document.getElementById('searchBar').value.toLowerCase();
-            const chatItems = document.querySelectorAll('.chat-list-item');
-
-            chatItems.forEach(item => {
-                const chatName = item.querySelector('span').textContent.toLowerCase();
-                item.style.display = chatName.includes(searchValue) ? 'flex' : 'none';
+            mockMessages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', message.from === 'you' ? 'you' : 'professional');
+                messageElement.textContent = message.text;
+                messageContainer.appendChild(messageElement);
             });
         }
 
+        // Function to send a new message
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const messageText = messageInput.value.trim();
 
+            if (messageText && currentUser) {
+                // Display user message
+                const messageContainer = document.getElementById('messageContainer');
+                const userMessageElement = document.createElement('div');
+                userMessageElement.classList.add('message', 'you');
+                userMessageElement.textContent = messageText;
+                messageContainer.appendChild(userMessageElement);
 
-        var insta = document.getElementById("instaicon")
-        insta.addEventListener("click", event => {
-            event.stopImmediatePropagation();
-            insta.href = "ighome.html";
-        })
+                // Clear input field
+                messageInput.value = '';
+
+                // Scroll to the latest message
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+
+                // Simulate the typing indicator and professional's reply
+                simulateTyping(messageText);
+            }
+        }
+
+        // Function to simulate typing indicator
+        function simulateTyping(messageText) {
+            const messageContainer = document.getElementById('messageContainer');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('message', 'professional');
+            typingIndicator.textContent = 'Professional is typing...';
+            messageContainer.appendChild(typingIndicator);
+
+            // Remove typing indicator after a short delay
+            clearTimeout(typingIndicatorTimeout);
+            typingIndicatorTimeout = setTimeout(() => {
+                messageContainer.removeChild(typingIndicator); // Remove typing indicator
+                professionalReply(messageText);
+            }, 2000); // Typing indicator stays for 2 seconds
+        }
+
+        // Function for the professional's reply
+        function professionalReply(messageText) {
+            const messageContainer = document.getElementById('messageContainer');
+            const professionalMessageElement = document.createElement('div');
+            professionalMessageElement.classList.add('message', 'professional');
+            professionalMessageElement.textContent = `I received your message: "${messageText}". Let's proceed.`;
+            messageContainer.appendChild(professionalMessageElement);
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
     </script>
 </body>
-
 </html>
