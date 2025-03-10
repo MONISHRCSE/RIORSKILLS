@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dsa course</title>
+    <title>RiorSkilld - Courses</title>
     <style>
-         * {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding-top: 100px; /* Ensure content is not hidden behind the fixed navbar */
         }
 
         a {
@@ -34,11 +41,11 @@
         .nav-low-bar {
             background: linear-gradient(90deg, red, black);
             width: 100%;
-            position: fixed;
             height: 12px;
-            top: 76.5px;
+            position: fixed;
+            top: 76px;
             left: 0;
-            z-index: 1001;
+            z-index: 999;
         }
 
         .logo {
@@ -79,21 +86,98 @@
             width: 28px;
             height: 28px;
             border: 2px solid white;
-            border-radius: 15px;
-            position: relative;
-            top: 0px;
-            right: 80px;
+            border-radius: 50%;
         }
 
-        .ppt{
-            position: absolute;
-            top: 100px;
-            left: 10%;
-            width: 1000px;
-            }
-        
+        .ppt {
+            margin-top: 20px;
+            padding: 20px;
+            width: 80%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* AI Roadmap Generator Section */
+        .ai-roadmap-section {
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .ai-roadmap-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .ai-roadmap-section input {
+            padding: 10px;
+            width: 70%;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .ai-roadmap-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .ai-roadmap-section button:hover {
+            background-color: red;
+        }
+
+        #roadmap-result {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        /* Project Generator Section */
+        .project-generator-section {
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .project-generator-section h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .project-generator-section input {
+            padding: 10px;
+            width: 70%;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .project-generator-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .project-generator-section button:hover {
+            background-color: red;
+        }
+
+        #project-result {
+            margin-top: 20px;
+            text-align: left;
+        }
     </style>
-    
 </head>
 <body>
     <nav class="navbar">
@@ -102,20 +186,28 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="course.html">Courses</a></li>
             <li><a href="community.html">Community</a></li>
-            <li><a href="#">Competitive programming</a></li>
+            <li><a href="#">Competitive Programming</a></li>
         </ul>
         <div class="profile">
-            <a href=""><img src="https://e7.pngegg.com/pngimages/442/477/png-clipart-computer-icons-user-profile-avatar-profile-heroes-profile-thumbnail.png" alt="" id="profile"></a>
+            <a href="#"><img src="https://e7.pngegg.com/pngimages/442/477/png-clipart-computer-icons-user-profile-avatar-profile-heroes-profile-thumbnail.png" alt="Profile" id="profile"></a>
         </div>
     </nav>
     <div class="nav-low-bar"></div>
-    <div class="ppt">
-    <iframe src="CPP.pdf" width="100%" height="600px">
-        This browser does not support PDFs. Please download the PDF to view it: 
-        <a href="CPP.pdf">Download PDF</a>
-    </iframe>
+
+    <!-- AI Roadmap Generator Section (Top) -->
+    <div id="ai-roadmap" class="ai-roadmap-section">
+        <h2>AI Roadmap Generator</h2>
+        <input type="text" id="course-input" placeholder="Enter course topic (e.g., Python)">
+        <button onclick="generateRoadmap()">Generate Roadmap</button>
+        <div id="roadmap-result"></div>
     </div>
 
-    
-</body>
-</html>
+    <div class="ppt">
+        <iframe src="CPP.pdf" width="100%" height="600px">
+            This browser does not support PDFs. Please download the PDF to view it:
+            <a href="CPP.pdf">Download PDF</a>
+        </iframe>
+    </div>
+
+    <!-- Project Generator Section (Bottom) -->
+     <center><h1><b>Project Using AI</b></h1></center>
