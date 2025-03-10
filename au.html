@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riorskills-Anna University</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation Bar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, red, black);
+            padding: 15px 40px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #f5f4ee; /* Gold color */
+            transition: transform 0.3s ease;
+        }
+
+        .navbar .logo:hover {
+            transform: scale(1.1);
+            color: #faf9f8;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+            transform: scale(1.1);
+        }
+
+        .profile img {
+            width: 30px;
+            height: 30px;
+            border: 2px solid white;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Nav-bar low bar */
+        .nav-low-bar {
+            background: black; /* Gold color */
+            height: 8px;
+            position: fixed;
+            top: 65px;
+            left: 0;
+            width: 100%;
+        }
+        .courses-section {
+            padding: 80px 40px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .courses-section h2 {
+            font-size: 32px;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .course-card {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px;
+            width: calc(33% - 30px);
+            display: inline-block;
+            vertical-align: top;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: scale(1.05);
+        }
+
+        .course-title {
+            font-size: 24px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .course-description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .course-link {
+            color: #003366;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+       
+       
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .profile {
+                margin-top: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">RIORSKILLS</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="course.html">Courses</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="#">Competitive Programming</a></li>
+        </ul>
+        <div class="profile">
+            <a href="#"><img src="https://e7.pngegg.com/pngimages/442/477/png-clipart-computer-icons-user-profile-avatar-profile-heroes-profile-thumbnail.png" alt="Profile"></a>
+        </div>
+    </nav>
+
+    <!-- Low Bar for Navbar -->
+    <div class="nav-low-bar"></div>
+
+    <!-- Content Section (You can add your content here) -->
+    <div style="margin-top: 100px; text-align: center;">
+        <h1>Welcome to Anna University</h1>
+        <p>Enhancing knowledge and building future leaders.</p>
+    </div>
+    <center>
+        <img src="https://images.indianexpress.com/2024/07/anna-uni.jpg" alt="" width="60%" height="60%">
+    </center>
+    <div class="courses-section">
+        <h2>Courses Offered</h2>
+        <div class="course-card">
+            <div class="course-title">Computer Science Engineering</div>
+            <div class="course-description">A comprehensive course focusing on computer systems, software engineering, and data science.</div>
+            <a href="#" class="course-link">Learn More</a>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Mechanical Engineering</div>
+            <div class="course-description">This course covers the design, production, and operation of machinery and systems in manufacturing.</div>
+            <a href="#" class="course-link">Learn More</a>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Electrical Engineering</div>
+            <div class="course-description">Study of electrical systems, power generation, and control systems in modern technology.</div>
+            <a href="#" class="course-link">Learn More</a>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Civil Engineering</div>
+            <div class="course-description">Focuses on the planning, design, and construction of infrastructure projects like roads and bridges.</div>
+            <a href="#" class="course-link">Learn More</a>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Aeronautical Engineering</div>
+            <div class="course-description">Learn about the design, construction, and operation of aircraft and spacecraft systems.</div>
+            <a href="#" class="course-link">Learn More</a>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Biotechnology</div>
+            <div class="course-description">A course that focuses on the use of biology in industrial applications and product development.</div>
+            <a href="#" class="course-link">Learn More</a>
+        </div>
+    </div>
+
+
+</body>
+</html>
